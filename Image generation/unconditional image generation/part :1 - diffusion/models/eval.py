@@ -18,7 +18,7 @@ def evaluate(config, epoch, pipeline):
 
 def generate(pretrained_pipe_dir):
 
-    pipeline = DDPMPipeline.from_pretrained().to("cuda")
+    pipeline = DDPMPipeline.from_pretrained(pretrained_pipe_dir).to("cuda")
     images = pipeline(
         batch_size=1,
         generator=torch.manual_seed(123),
