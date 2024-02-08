@@ -14,4 +14,5 @@ Items related to my blogs
 [Part 2 - Coloring black and white images](https://1bytenand.hashnode.dev/unconditional-image-generation-1)
 
 **MORE**
-[LoRA-Accelerate fine tuning of large models while consuming less memory](https://1bytenand.hashnode.dev/lora)
+
+- [LoRA-Accelerate fine tuning of large models while consuming less memory](https://1bytenand.hashnode.dev/lora)
