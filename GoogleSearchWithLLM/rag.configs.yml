@@ -1,0 +1,7 @@
+document:
+  min_char_length: 512 
+
+model: 
+  embeding_model: all-mpnet-base-v2
+  genration_model: google/gemma-7b-it
+  device : cuda
