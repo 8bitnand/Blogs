@@ -1,3 +1,0 @@
-[submodule "GoogleSearchWithLLM"]
-	path = GoogleSearchWithLLM
-	url = https://huggingface.co/spaces/nand-tmp/GoogleSearchWithLLM
