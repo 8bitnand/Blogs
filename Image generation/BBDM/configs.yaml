@@ -15,7 +15,7 @@ data:
   dataset_type: 'custom_aligned'
   dataset_config:
     dataset_path: 'dataset_path'
-    image_size: 256
+    image_size: 128
     channels: 3
     to_normal: True
     flip: True
@@ -33,29 +33,19 @@ model:
  
   VQGAN:
     params:
-      ckpt_path: 'results/VQGAN/CelebAMaskHQ-f16.ckpt'
-      embed_dim: 8
-      n_embed: 16384
-      ddconfig:
-        double_z: false
-        z_channels: 8
-        resolution: 256
-        in_channels: 3
-        out_ch: 3
-        ch: 128
-        ch_mult: 
-          - 1
-          - 1
-          - 2
-          - 2
-          - 4
-        num_res_blocks: 2
-        attn_resolutions:
-          - 16
-        dropout: 0.0
+      in_channels: 3
+      out_channels: 3
+      down_block_types: 
+        - DownEncoderBlock2D
+ 
+      up_block_types: 
+        - UpDecoderBlock2D
+        - AttnUpDecoderBlock2D
 
-      lossconfig:
-        target: torch.nn.Identity
+      block_out_channels: [64, 64]
+      layers_per_block: 2
+      latent_channels: 3
+      sample_size: 128
 
   BB:
     optimizer:
@@ -85,24 +75,24 @@ model:
       max_var: 1.0 # maximum variance
 
       UNetParams:
-        sample_size: 100
+        sample_size: 128
         in_channels: 3
         out_channels: 3
         layers_per_block: 2
         block_out_channels : [128, 128, 256, 256, 512, 512]  # the number of output channels for each UNet block
         down_block_types:
-            - "DownBlock2D" 
-            - "DownBlock2D"
-            - "DownBlock2D"
-            - "DownBlock2D"
-            - "AttnDownBlock2D"  
-            - "DownBlock2D"
+            - DownBlock2D 
+            - DownBlock2D
+            - DownBlock2D
+            - DownBlock2D
+            - AttnDownBlock2D  
+            - DownBlock2D
         
         up_block_types: 
-            - "UpBlock2D"  
-            - "AttnUpBlock2D"  
-            - "UpBlock2D"
-            - "UpBlock2D"
-            - "UpBlock2D"
-            - "UpBlock2D"
+            - UpBlock2D  
+            - AttnUpBlock2D  
+            - UpBlock2D
+            - UpBlock2D
+            - UpBlock2D
+            - UpBlock2D
         
